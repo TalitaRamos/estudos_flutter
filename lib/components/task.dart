@@ -6,14 +6,15 @@ class Task extends StatefulWidget {
   final String url;
   final int dificuldade;
 
-  const Task(this.title, this.url, this.dificuldade, {super.key});
+  Task(this.title, this.url, this.dificuldade, {super.key});
+
+  int nivel = 0;
 
   @override
   State<Task> createState() => _TaskState();
 }
 
 class _TaskState extends State<Task> {
-  int nivel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +38,11 @@ class _TaskState extends State<Task> {
                           width: 200,
                           child: LinearProgressIndicator(
                             color: Colors.blue.shade100,
-                            value: (nivel / widget.dificuldade) / 10,
+                            value: (widget.nivel / widget.dificuldade) / 10,
                           ),
                         ),
                         Text(
-                          'Nível: $nivel',
+                          'Nível: ${widget.nivel}',
                           style: const TextStyle(
                               fontSize: 18, color: Colors.white),
                         ),
@@ -102,7 +103,7 @@ class _TaskState extends State<Task> {
                     child: ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          nivel++;
+                          widget.nivel++;
                         });
                       },
                       child: const Column(
