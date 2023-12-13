@@ -6,12 +6,14 @@ class TaskDao {
   static const String tableSql = 'CREATE TABLE $_tableName('
       '$_name TEXT, '
       '$_difficulty INTEGER, '
-      '$_image TEXT)';
+      '$_image TEXT, '
+      '$_level INTEGER)';
 
   static const String _tableName = 'task';
   static const String _name = 'name';
   static const String _difficulty = 'difficulty';
   static const String _image = 'image';
+  static const String _level = 'level';
 
   save(Task task) async {
     final Database database = await getDatabase();
@@ -37,16 +39,14 @@ class TaskDao {
     taskMap[_name] = task.title;
     taskMap[_image] = task.url;
     taskMap[_difficulty] = task.dificuldade;
+    taskMap[_level] = task.nivel;
 
     return taskMap;
   }
 
   Future<List<Task>> findAll() async {
-    print('Acessando o findAll:');
-
     final Database database = await getDatabase();
     final List<Map<String, dynamic>> result = await database.query(_tableName);
-    print('Encontrado: $result');
 
     return toList(result);
   }
@@ -55,7 +55,7 @@ class TaskDao {
     List<Task> tarefas = [];
 
     for (Map<String, dynamic> linha in result) {
-      tarefas.add(Task(linha[_name], linha[_image], linha[_difficulty]));
+      tarefas.add(Task(linha[_name], linha[_image], linha[_difficulty], linha[_level]));
     }
 
     return tarefas;
