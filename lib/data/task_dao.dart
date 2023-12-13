@@ -3,7 +3,7 @@ import 'package:widgets_estudos1/components/task.dart';
 import 'package:widgets_estudos1/data/database.dart';
 
 class TaskDao {
-  static const String tableSql = 'CREATE $_tableName('
+  static const String tableSql = 'CREATE TABLE $_tableName('
       '$_name TEXT, '
       '$_difficulty INTEGER, '
       '$_image TEXT)';
