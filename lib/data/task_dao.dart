@@ -33,32 +33,11 @@ class TaskDao {
     }
   }
 
-  Map<String, dynamic> toMap(Task task) {
-    Map<String, dynamic> taskMap = Map();
-
-    taskMap[_name] = task.title;
-    taskMap[_image] = task.url;
-    taskMap[_difficulty] = task.dificuldade;
-    taskMap[_level] = task.nivel;
-
-    return taskMap;
-  }
-
   Future<List<Task>> findAll() async {
     final Database database = await getDatabase();
     final List<Map<String, dynamic>> result = await database.query(_tableName);
 
     return toList(result);
-  }
-
-  List<Task> toList(List<Map<String, dynamic>> result) {
-    List<Task> tarefas = [];
-
-    for (Map<String, dynamic> linha in result) {
-      tarefas.add(Task(linha[_name], linha[_image], linha[_difficulty], linha[_level]));
-    }
-
-    return tarefas;
   }
 
   Future<List<Task>> find(String nomeTarefa) async {
@@ -80,5 +59,27 @@ class TaskDao {
       where: '$_name = ?',
       whereArgs: [nomeTarefa],
     );
+  }
+
+  Map<String, dynamic> toMap(Task task) {
+    Map<String, dynamic> taskMap = Map();
+
+    taskMap[_name] = task.title;
+    taskMap[_image] = task.url;
+    taskMap[_difficulty] = task.dificuldade;
+    taskMap[_level] = task.nivel;
+
+    return taskMap;
+  }
+
+  List<Task> toList(List<Map<String, dynamic>> result) {
+    List<Task> tarefas = [];
+
+    for (Map<String, dynamic> linha in result) {
+      tarefas.add(
+          Task(linha[_name], linha[_image], linha[_difficulty], linha[_level]));
+    }
+
+    return tarefas;
   }
 }
