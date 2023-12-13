@@ -6,17 +6,15 @@ class Task extends StatefulWidget {
   final String title;
   final String url;
   final int dificuldade;
-
-  Task(this.title, this.url, this.dificuldade, {super.key});
-
   int nivel = 0;
+
+  Task(this.title, this.url, this.dificuldade, this.nivel, {super.key});
 
   @override
   State<Task> createState() => _TaskState();
 }
 
 class _TaskState extends State<Task> {
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -105,10 +103,14 @@ class _TaskState extends State<Task> {
                       onLongPress: () {
                         showAlertDialog(context, widget.title);
                       },
-                      onPressed: () {
-                        setState(() {
-                          widget.nivel++;
-                        });
+                      onPressed: () async {
+                        await TaskDao().save(Task(
+                          widget.title,
+                          widget.url,
+                          widget.dificuldade,
+                          ++widget.nivel,
+                        ));
+                        setState(() {});
                       },
                       child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -125,7 +127,6 @@ class _TaskState extends State<Task> {
     );
   }
 }
-
 
 showAlertDialog(BuildContext context, String title) {
   Widget cancelButton = TextButton(
