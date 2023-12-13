@@ -25,9 +25,7 @@ class MyApp extends StatelessWidget {
             )),
         useMaterial3: false,
       ),
-      home: TaskInherited(
-        child: const InitialScreen(),
-      ),
+      home: const InitialScreen(),
     );
   }
 }
