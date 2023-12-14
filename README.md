@@ -1,16 +1,16 @@
 # widgets_estudos1
 
-A new Flutter project.
+Projeto realizado durante parte da formação em Flutter da Alura. 
 
+Durante o desenvolvimento deste projeto foram estudados os seguintes assuntos: 
+- Widgets, stateless, stateful, imagens e animações
+- Formulários, controller, navegação e estados
+- Persistência de dados interna
+  
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Este projeto foi construído com o flutter  3.0.2
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Foram utilizadas as seguintes dependências:
+- cupertino_icons: ^1.0.2
+- sqflite: ^2.3.0
